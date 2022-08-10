@@ -6,6 +6,9 @@ app.use(express.json()); // Enable the server to handle JSON requests
 app.use(cors()); // Dont let local development give errors
 var bodyParser = require("body-parser");
 
+app.get("/",(req,res)=>{
+  res.json({msg:"welcome"})
+})
 // import routes
 const userRoute = require("./routes/userRoute");
 const productsRoute = require("./routes/productsRoute");
@@ -22,6 +25,3 @@ app.listen(app.get("port"), () => {
   console.log("Press Ctrl+C to exit server");
 });
 // app.use(express.static("public"));
-app.get("/",(req,res)=>{
-  res.json({msg:"welcome"})
-})
