@@ -201,7 +201,6 @@ router.put("/:id", (req, res) => {
   try {
     const {
       email,
-
       password,
       full_name,
       billing_address,
