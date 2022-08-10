@@ -69,10 +69,10 @@ router.post("/login", (req, res) => {
           result[0].password
         );
         if (!isMatch) {
-          // res.send('{"msg":"pasword incorrect"}');
+          // res.send('{"msg":"password incorrect"}');
           res.status(400).json({
             status: "error",
-            error: "pasword incorrect",
+            error: "password incorrect",
           });
         } else {
           // The information the should be stored inside token

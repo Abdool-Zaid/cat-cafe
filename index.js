@@ -10,10 +10,12 @@ var bodyParser = require("body-parser");
 const userRoute = require("./routes/userRoute");
 const productsRoute = require("./routes/productsRoute");
 const orderRoute = require("./routes/orderRoute");
+const staffRoute = require("./routes/staffRoute");
 
 app.use("/users", userRoute);
 app.use("/products", productsRoute);
 app.use("/orders", orderRoute);
+app.use("/staff", staffRoute);
 
 app.listen(app.get("port"), () => {
   console.log(`Listening for calls on port ${app.get("port")}`);
