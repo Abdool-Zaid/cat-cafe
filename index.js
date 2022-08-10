@@ -21,4 +21,4 @@ app.listen(app.get("port"), () => {
   console.log(`Listening for calls on port ${app.get("port")}`);
   console.log("Press Ctrl+C to exit server");
 });
-app.use(express.static("public"));
+// app.use(express.static("public"));
