@@ -22,4 +22,4 @@ app.listen(app.get("port"), () => {
   console.log("Press Ctrl+C to exit server");
 });
 
-app.use(express.static("/"));
+app.use(express.static("public"));
