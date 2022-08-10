@@ -21,6 +21,3 @@ app.listen(app.get("port"), () => {
 });
 
 app.use(express.static("public"));
-app.get("/", function (req, res) {
-  res.sendFile(__dirnamev + "/" + "index.html");
-});
