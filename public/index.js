@@ -1,4 +1,4 @@
-fetch("http://localhost:6969/staff", {
+fetch("https://catcafena.herokuapp.com/staff", {
   method: "get",
 
 })
