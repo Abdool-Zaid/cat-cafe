@@ -179,7 +179,7 @@ router.post("/", (req, res) => {
   try {
     con.query(
       //When using the ${}, the content of con.query MUST be in the back tick
-      `INSERT INTO users (email,password,full_name,billing_address,,country,phone,user_type) VALUES ("${email}","${password}","${full_name}","${billing_address}","${country}","${phone}","${user_type}")`,
+      `INSERT INTO users (email,password,full_name,billing_address,country,phone,user_type) VALUES ("${email}","${password}","${full_name}","${billing_address}","${country}","${phone}","${user_type}")`,
       (err, result) => {
         if (err) throw err;
         res.json(`User registered ${full_name}`);
