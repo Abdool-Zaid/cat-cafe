@@ -18,6 +18,7 @@
 #content{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 span{
     color: red;
@@ -25,13 +26,24 @@ span{
 
 .Item {
     background-color: var(--sixty);
-    max-width: 30vw;
+    max-width: 25vw;
     margin: 2em;
     border: var(--sb) solid var(--acc);
     padding: var(--ss);
   }
   .Item >img{
-    width: 256px;
+    width: 98% ;
     border-radius: 50%;
     aspect-ratio: 1;
   }
+
+  @media only screen and (max-width: 700px){
+    #content{
+      flex-direction: column;
+
+    }
+    .Item{
+      max-width:98vw;
+max-height: 87vh;
+    }
+    }
