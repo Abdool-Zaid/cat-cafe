@@ -18,7 +18,6 @@ router.post("/register", (req, res) => {
       phone,
       country,
       billing_address,
-      default_shipping_address,
     } = req.body;
 
     // The start of hashing / encryption
@@ -34,7 +33,6 @@ router.post("/register", (req, res) => {
       phone,
       country,
       billing_address,
-      default_shipping_address,
     };
     con.query(sql, user, (err, result) => {
       if (err) throw err;
@@ -85,7 +83,6 @@ router.post("/login", (req, res) => {
               phone: result[0].phone,
               country: result[0].country,
               billing_address: result[0].billing_address,
-              default_shipping_address: result[0].default_shipping_address,
             },
           };
           // Creating a token and setting expiry date
@@ -172,7 +169,6 @@ router.post("/", (req, res) => {
     password,
     full_name,
     billing_address,
-    default_shipping_address,
     country,
     phone,
     user_type,
@@ -183,7 +179,7 @@ router.post("/", (req, res) => {
   try {
     con.query(
       //When using the ${}, the content of con.query MUST be in the back tick
-      `INSERT INTO users (email,password,full_name,billing_address,default_shipping_address,country,phone,user_type) VALUES ("${email}","${password}","${full_name}","${billing_address}","${default_shipping_address}","${country}","${phone}","${user_type}")`,
+      `INSERT INTO users (email,password,full_name,billing_address,,country,phone,user_type) VALUES ("${email}","${password}","${full_name}","${billing_address}","${country}","${phone}","${user_type}")`,
       (err, result) => {
         if (err) throw err;
         res.json(`User registered ${full_name}`);
@@ -204,7 +200,6 @@ router.put("/:id", (req, res) => {
       password,
       full_name,
       billing_address,
-      default_shipping_address,
       country,
       phone,
       user_type,
@@ -213,7 +208,7 @@ router.put("/:id", (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
     con.query(
-      `UPDATE users set email="${email}",password="${hash}",full_name="${full_name}",billing_address="${billing_address}",default_shipping_address="${default_shipping_address}",country="${country}",phone="${phone}",user_type="${user_type}" WHERE user_id = "${req.params.id}"`,
+      `UPDATE users set email="${email}",password="${hash}",full_name="${full_name}",billing_address="${billing_address}",country="${country}",phone="${phone}",user_type="${user_type}" WHERE user_id = "${req.params.id}"`,
       (err, result) => {
         if (err) throw err;
         res.send(result);
