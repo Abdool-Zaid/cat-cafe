@@ -45,7 +45,7 @@ span{
     }
     .Item{
       margin: var(--ss);
-
+      margin-bottom: 2em;
       max-width:98vw;
 max-height: 87vh;
     }
