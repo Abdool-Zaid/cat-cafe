@@ -29,7 +29,7 @@ app.listen(app.get("port"), () => {
 
 router.get("/", (req, res) => {
   res.json({
-   msg:'hello'
+   msg:`Natherah's mustache is mad cute`
   });
 });
 
