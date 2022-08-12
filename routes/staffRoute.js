@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const con = require("../lib/db_connection");
+const serverless = require("serverless-http");
+
 
 const middleware = require("../middleware/auth");
 
@@ -104,3 +106,4 @@ router.delete("/:id", middleware, (req, res) => {
 });
 
 module.exports = router;
+// module.exports.handler = serverless(app);
