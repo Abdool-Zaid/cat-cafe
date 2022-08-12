@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node src/api.js"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,10 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
+    "netlify-lambda": "^2.0.15",
     "nodemailer": "^6.7.7",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "serverless-http": "^3.0.1"
   },
   "directories": {
     "lib": "lib"
