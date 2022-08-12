@@ -1,4 +1,27 @@
-fetch("https://catcafena.herokuapp.com/staff", {
+let displayCat=()=>{
+ return Math.ceil(Math.random()*32)
+}
+fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staff/"+displayCat(), {
+  method: "get",
+})
+  .then((response) => response.json())
+  .then((data) => {
+    let posterCat = [];
+    posterCat = data;
+    posterCat.forEach((cat) => {
+      document.querySelector("#content").innerHTML += `
+    <div class="Item"  onclick='showItem(this.id)' id="${cat.staffID}" >
+    <h1>${cat.name}</h1>
+    <img src="${cat.image}" alt="${cat.image}">
+    <button onli>view more</button>
+
+    </div>
+    `;
+    });
+
+  })
+
+fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staff", {
   method: "get",
 })
   .then((response) => response.json())
@@ -7,26 +30,30 @@ fetch("https://catcafena.herokuapp.com/staff", {
     cats = data;
 
     cats.forEach((cat) => {
-      document.querySelector("#content").innerHTML += `
-    <div class="Item"  onclick='showItem(this.id)' id="${cat.staffID}" >
-    <h1>${cat.name}</h1>
-    <img src="${cat.image}" alt="${cat.image}">
-    <button>add</button>
+      //   document.querySelector("#content").innerHTML += `
+    //   document.querySelector("#content").innerHTML += `
+    // <div class="Item"  onclick='showItem(this.id)' id="${cat.staffID}" >
+    // <h1>${cat.name}</h1>
+    // <img src="${cat.image}" alt="${cat.image}">
+    // <button>add</button>
 
-    </div>
-    `;
+    // </div>
+    // `;
     });
   });
 
-let products = [];
-const productContainer = document.getElementById("products");
-fetch("http://localhost:6969/products")
-  .then((res) => res.json())
-  .then((data) => {
-    products = data;
-    console.log(data);
-    showproducts(data);
-  });
+// let products = [];
+// const productContainer = document.getElementById("products");
+// fetch("http://localhost:6969/products")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     products = data;
+//     console.log(data);
+//     showproducts(data);
+//   });
+
+
+
 // function showproducts(products) {
 //   //   prodContainer.innerHTML = "";
 //   products.forEach((product) => {
@@ -71,3 +98,34 @@ async function showItem(id) {
 }
 
 document.querySelector('#basket').innerHTML+=``
+
+
+
+// cart idea
+
+// let addToCart=(user_ID,product_ID)=>{
+//   let order ={
+//   user_ID:"user_ID",
+//   product_ID:"product_ID",
+//   amount:0,
+//   status:"ordered"
+//   };
+//   order.amount++
+//   cart.push(order)
+//   localstorage.setItem('cart',JSON.stringify(cart))
+//   }
+//   localstorage.setItem('cart',JSON.stringify(cart))
+//   if(localstorage.cart.product_ID!==product_ID){
+//   addToCart(user_ID,product_ID)
+//   if(localstorage.user.user_ID){
+//   }
+//   else{
+//   alert('please login in')
+//   }
+//   }
+  
+//   else{
+//   for (let i = 0; i <localstorage.cart.length; i++) {
+//     addToCart=(user_ID,product_ID)g
+//   }
+//   }
