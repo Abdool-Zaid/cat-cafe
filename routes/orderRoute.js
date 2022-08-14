@@ -143,9 +143,6 @@ router.post("/", (req, res) => {
     const {
       user_id,
       amount,
-      shipping_address,
-      order_email,
-      order_date,
       order_status,
     } = req.body;
     // OR

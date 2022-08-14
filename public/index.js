@@ -1,3 +1,6 @@
+
+localStorage.setItem('user_id',('23'))
+let cart = [];
 let displayCat=()=>{
  return Math.ceil(Math.random()*32)
 }
@@ -37,97 +40,56 @@ fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staf
     <div class="Item"  onclick='showItem(this.id)' id="${cat.staffID}" >
     <h1>${cat.name}</h1>
     <img src="${cat.image}" alt="${cat.image}">
-    <button>add</button>
+    <button>book me</button>
 
     </div>
     `;
     });
   });
+async function showItem(id){
+       const response = await fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staff/" + `${id}`, {
+        method: "GET",
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  let data = await response.json();
+  let staff = data;
+  staff.forEach((person) => {
+    document.querySelector('#basket').innerHTML+=`
+<div class="Item"   id="${person.staffID}" >
+<h1>${person.name}</h1>
+<img src="${person.image}" alt="${person.image}">
+<input type="range" min="1" max="100" value="50" class="slider" onchange="getTime(this.id)" id="time${person.staffID}">
 
-// let products = [];
-// const productContainer = document.getElementById("products");
-// fetch("http://localhost:6969/products")
-//   .then((res) => res.json())
-//   .then((data) => {
-//     products = data;
-//     console.log(data);
-//     showproducts(data);
-//   });
+</div>
+`;
+});
+   }
 
-
-
-// function showproducts(products) {
-//   //   prodContainer.innerHTML = "";
-//   products.forEach((product) => {
-//     productContainer.innerHTML += `
-//             <tr>
-//                 <td>${product.name}</td>
-//                 <td>${product.price}</td>
-//                 <td>${product.sku}</td>
-//                 <td>${product.weight}</td>
-//                 <td>${product.description}</td>
-//                 <td><img  src="${product.image}"></td>
-              
-//             </tr>
-//         </tbody>
-// `;
-//   });
-// }
-let cart = [];
-// async function showItem(id) {
-//   const response = await fetch("http://localhost:6969/staff/" + `${id}`, {
-//     method: "GET",
-//     headers: {
-//       "Content-type": "application/json",
-//     },
-//   });
-//   let cartArray = [];
-//   let data = await response.json();
-//   let product = data;
-//   localStorage.setItem("product", JSON.stringify(product.pop()));
-//   // alert(localStorage.product)
-//   //   console.log=0
-//   cartArray.push(JSON.parse(localStorage.product));
-//   console.log(cartArray);
-//   cartArray.forEach((product) => {
-//     // let 
-//     cart.push(cartArray[0].staffID);
-
-//     console.log(cart);
-
-//     localStorage.setItem("cart", JSON.stringify(cart));
-//   });
-// }
-
-// document.querySelector('#basket').innerHTML+=``
-
-
-
-// cart idea
-
-// let addToCart=(user_ID,product_ID)=>{
-//   let order ={
-//   user_ID:"user_ID",
-//   product_ID:"product_ID",
-//   amount:0,
-//   status:"ordered"
-//   };
-//   order.amount++
-//   cart.push(order)
-//   localstorage.setItem('cart',JSON.stringify(cart))
-//   }
-//   localstorage.setItem('cart',JSON.stringify(cart))
-//   if(localstorage.cart.product_ID!==product_ID){
-//   addToCart(user_ID,product_ID)
-//   if(localstorage.user.user_ID){
-//   }
-//   else{
-//   alert('please login in')
-//   }
-//   }
-  
-//   else{
-//   for (let i = 0; i <localstorage.cart.length; i++) {
-//     addToCart=(user_ID,product_ID)g
-//   }
-//   }
+  let getTime=(id)=>{
+    let personell=(id)=>{
+let dump =id.split('')
+      return dump.pop()
+    }
+    let booking={
+      user_id:localStorage.user_id,
+      staff:personell(id),
+      duration:document.querySelector(`#`+id).value,
+      status:'booked'
+    }
+    cart.push(booking)
+localStorage.setItem('cart',JSON.stringify(cart))
+  }
+let checkOut=()=>{
+let selection= localStorage.cart
+selection.forEach((order)=>{
+  fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/orders", {
+        method: "POST",
+   BODY: {
+      "Content-type": "application/json",
+    },
+  });
+  console.log(order)
+})
+}
