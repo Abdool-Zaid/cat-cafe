@@ -60,7 +60,7 @@ async function showItem(id){
 <div class="Item"   id="${person.staffID}" >
 <h1>${person.name}</h1>
 <img src="${person.image}" alt="${person.image}">
-<input type="range" min="1" max="100" value="50" class="slider" onchange="getTime(this.id)" id="time${person.staffID}">
+<input type="range" min="1" max="100" value="50" class="slider" onchange="getTime(this.id)" id="time_${person.staffID}">
 
 </div>
 `;
@@ -69,8 +69,8 @@ async function showItem(id){
 
   let getTime=(id)=>{
     let personell=(id)=>{
-let dump =id.split('')
-      return dump.pop()
+let staff_ID =id.split('_')
+      return staff_ID.pop()
     }
     let booking={
       user_id:localStorage.user_id,
@@ -91,5 +91,6 @@ selection.forEach((order)=>{
     },
   });
   console.log(order)
+  localStorage.cart=null
 })
 }
