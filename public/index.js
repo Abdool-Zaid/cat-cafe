@@ -1,6 +1,11 @@
 let displayCat=()=>{
  return Math.ceil(Math.random()*32)
 }
+let revealContent=()=>{
+  document.querySelector("#allCats").classList.toggle('active')
+  console.log('active')
+
+}
 fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staff/"+displayCat(), {
   method: "get",
 })
@@ -10,11 +15,10 @@ fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staf
     posterCat = data;
     posterCat.forEach((cat) => {
       document.querySelector("#content").innerHTML += `
-    <div class="Item"  onclick='showItem(this.id)' id="${cat.staffID}" >
+    <div class="Item"  id="${cat.staffID}" >
     <h1>${cat.name}</h1>
     <img src="${cat.image}" alt="${cat.image}">
-    <button onli>view more</button>
-
+    <button onclick="revealContent()">view more</button>
     </div>
     `;
     });
@@ -30,15 +34,15 @@ fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staf
     cats = data;
 
     cats.forEach((cat) => {
-      //   document.querySelector("#content").innerHTML += `
-    //   document.querySelector("#content").innerHTML += `
-    // <div class="Item"  onclick='showItem(this.id)' id="${cat.staffID}" >
-    // <h1>${cat.name}</h1>
-    // <img src="${cat.image}" alt="${cat.image}">
-    // <button>add</button>
+        document.querySelector("#allCats").innerHTML += `
 
-    // </div>
-    // `;
+    <div class="Item"  onclick='showItem(this.id)' id="${cat.staffID}" >
+    <h1>${cat.name}</h1>
+    <img src="${cat.image}" alt="${cat.image}">
+    <button>add</button>
+
+    </div>
+    `;
     });
   });
 
@@ -72,32 +76,32 @@ fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staf
 //   });
 // }
 let cart = [];
-async function showItem(id) {
-  const response = await fetch("http://localhost:6969/staff/" + `${id}`, {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-  let cartArray = [];
-  let data = await response.json();
-  let product = data;
-  localStorage.setItem("product", JSON.stringify(product.pop()));
-  // alert(localStorage.product)
-  //   console.log=0
-  cartArray.push(JSON.parse(localStorage.product));
-  console.log(cartArray);
-  cartArray.forEach((product) => {
-    // let 
-    cart.push(cartArray[0].staffID);
+// async function showItem(id) {
+//   const response = await fetch("http://localhost:6969/staff/" + `${id}`, {
+//     method: "GET",
+//     headers: {
+//       "Content-type": "application/json",
+//     },
+//   });
+//   let cartArray = [];
+//   let data = await response.json();
+//   let product = data;
+//   localStorage.setItem("product", JSON.stringify(product.pop()));
+//   // alert(localStorage.product)
+//   //   console.log=0
+//   cartArray.push(JSON.parse(localStorage.product));
+//   console.log(cartArray);
+//   cartArray.forEach((product) => {
+//     // let 
+//     cart.push(cartArray[0].staffID);
 
-    console.log(cart);
+//     console.log(cart);
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-  });
-}
+//     localStorage.setItem("cart", JSON.stringify(cart));
+//   });
+// }
 
-document.querySelector('#basket').innerHTML+=``
+// document.querySelector('#basket').innerHTML+=``
 
 
 

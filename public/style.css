@@ -16,12 +16,24 @@
     --acc: #845ec2;
     --chestHair: #00000000;
   }
-#content{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-span{
+  #content{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      
+  }
+  #allCats{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      transform-origin:top;
+      transform: scale(0);
+    }
+    #allCats.active{
+    transform: scale(1);
+
+  }
+  span{
     color: red;
 }
 
