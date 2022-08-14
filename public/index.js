@@ -3,8 +3,6 @@ let displayCat=()=>{
 }
 let revealContent=()=>{
   document.querySelector("#allCats").classList.toggle('active')
-  console.log('active')
-
 }
 fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staff/"+displayCat(), {
   method: "get",
@@ -18,7 +16,7 @@ fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staf
     <div class="Item"  id="${cat.staffID}" >
     <h1>${cat.name}</h1>
     <img src="${cat.image}" alt="${cat.image}">
-    <button onclick="revealContent()">view more</button>
+    <button onclick="revealContent()" id='viewButton'>view more</button>
     </div>
     `;
     });
