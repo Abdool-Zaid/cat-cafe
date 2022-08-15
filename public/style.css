@@ -28,8 +28,10 @@
       justify-content: center;
       transform-origin:top center;
       transform: scale(0);
+      display: none;
     }
     #allCats.active{
+      display: flex;
     transform: scale(1);
     transition-duration: 1000ms;
   }

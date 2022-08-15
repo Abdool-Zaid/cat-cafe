@@ -1,6 +1,7 @@
 
 localStorage.setItem('user_id',('2'))
 let cart = [];
+console.log=0
 let displayCat=()=>{
  return Math.ceil(Math.random()*32)
 }
@@ -61,7 +62,6 @@ fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staf
 <h1>${person.name}</h1>
 <img src="${person.image}" alt="${person.image}">
 <input type="range" min="1" max="100" value="50" class="slider" onchange="getTime(this.id)" id="mayonnaiseIsADrink${person.staffID}">
-
 </div>
 `;
 });
