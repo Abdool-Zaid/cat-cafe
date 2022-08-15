@@ -16,7 +16,6 @@ router.post("/register", (req, res) => {
       password,
       user_type,
       phone,
-      country,
       billing_address,
     } = req.body;
 
@@ -31,7 +30,6 @@ router.post("/register", (req, res) => {
       password: hash,
       user_type,
       phone,
-      country,
       billing_address,
     };
     con.query(sql, user, (err, result) => {

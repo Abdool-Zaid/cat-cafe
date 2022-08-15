@@ -38,6 +38,14 @@
   span{
     color: red;
 }
+form{
+  display: flex;
+  flex-direction: column;
+  padding: var(--ss);
+}
+form > *{
+  margin: var(--ss);
+}
 #basket{
   position: fixed;
 bottom: 0;
