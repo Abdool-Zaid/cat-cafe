@@ -4,35 +4,30 @@ const con = require("../lib/db_connection");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const middleware = require("../middleware/auth");
+const { json } = require("express");
 
-// Register Route
-// The Route where Encryption starts
-router.post("/order", (req, res) => {
+router.post("/", (req, res) => {
   try {
     let sql = "INSERT INTO orders SET ?";
     const {
+      staff_id,
       user_id,
       amount,
-      shipping_address,
-      order_email,
-      order_date,
       order_status,
     } = req.body;
 
     // The start of hashing / encryption
 
     let order = {
+      staff_id,
       user_id,
       amount,
-      shipping_address,
-      order_email,
-      order_date,
       order_status,
     };
     con.query(sql, order, (err, result) => {
       if (err) throw err;
-      console.log(result);
-      res.send(`order no: ${order_id} created successfully`);
+      let order=result[0]
+      res.send(`order no: ${order} created successfully`);
     });
   } catch (error) {
     console.log(error);

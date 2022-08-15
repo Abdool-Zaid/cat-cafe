@@ -46,7 +46,7 @@ fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staf
     `;
     });
   });
-async function showItem(id){
+ async function showItem(id){
        const response = await fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/staff/" + `${id}`, {
         method: "GET",
     headers: {
@@ -81,16 +81,29 @@ let staff_ID =id.split('k')
     cart.push(booking)
 localStorage.setItem('cart',JSON.stringify(cart))
   }
-let checkOut=()=>{
-let selection= localStorage.cart
+  let checkOut=()=>{
+let selection= JSON.parse(localStorage.cart)
+
 selection.forEach((order)=>{
-  fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/orders", {
-        method: "POST",
-   BODY: {
-      "Content-type": "application/json",
-    },
-  });
-  console.log(order)
+    async function ufn(){
+      const response= await fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/orders", {
+      method: "POST",
+      body: JSON.stringify({
+        user_id: order.user_id,
+        staff_ID: order.staff,
+        amount: order.duration,
+        status: order.status,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    let data =  await response.json();
+    if (data.status === "error") {
+      alert(data.error);
+    }
+  }
+  ufn()
+    })
   localStorage.cart=null
-})
 }
