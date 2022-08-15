@@ -1,5 +1,5 @@
 
-localStorage.setItem('user_id',('23'))
+localStorage.setItem('user_id',('2'))
 let cart = [];
 let displayCat=()=>{
  return Math.ceil(Math.random()*32)
@@ -106,4 +106,5 @@ selection.forEach((order)=>{
   ufn()
     })
   localStorage.cart=null
+  alert('ordered')
 }

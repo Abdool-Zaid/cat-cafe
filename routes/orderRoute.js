@@ -26,8 +26,9 @@ router.post("/", (req, res) => {
     };
     con.query(sql, order, (err, result) => {
       if (err) throw err;
-      let order=result[0]
-      res.send(`order no: ${order} created successfully`);
+      let order=JSON.stringify(result)
+      let orderData=JSON.parse(order)
+      res.send(`order no: ${orderData.insertId} created successfully`);
     });
   } catch (error) {
     console.log(error);
