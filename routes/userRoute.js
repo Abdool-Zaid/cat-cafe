@@ -164,22 +164,15 @@ router.get("/:id", (req, res) => {
 // Add new post
 router.post("/", (req, res) => {
   // the below allows you to only need one const, but every input required is inside of the brackets
-  const {
-    email,
-    password,
-    full_name,
-    billing_address,
-    country,
-    phone,
-    user_type,
-  } = req.body;
+  const { email, password, full_name, billing_address, phone, user_type } =
+    req.body;
   // OR
   // the below requires you to add everything one by one
   //   const email = req.body.email;
   try {
     con.query(
       //When using the ${}, the content of con.query MUST be in the back tick
-      `INSERT INTO users (email,password,full_name,billing_address,country,phone,user_type) VALUES ("${email}","${password}","${full_name}","${billing_address}","${country}","${phone}","${user_type}")`,
+      `INSERT INTO users (email,password,full_name,billing_address,phone,user_type) VALUES ("${email}","${password}","${full_name}","${billing_address}","${phone}","${user_type}")`,
       (err, result) => {
         if (err) throw err;
         res.json(`User registered ${full_name}`);

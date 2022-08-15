@@ -141,6 +141,7 @@ router.post("/", (req, res) => {
   if (req.body.user_type.length !== 0) {
     // the below allows you to only need one const, but every input required is inside of the brackets
     const {
+      staff_id,
       user_id,
       amount,
       order_status,
@@ -151,7 +152,7 @@ router.post("/", (req, res) => {
     try {
       con.query(
         //When using the ${}, the content of con.query MUST be in the back tick
-        `INSERT INTO orders (user_id,amount,shipping_address,order_email,order_date,order_status,) VALUES ("${user_id}",${amount}","${shipping_address}","${order_email}","${order_date}","${order_status}")`,
+        `INSERT INTO orders (staff_id,user_id,amount,order_status) VALUES ("${staff_id}",${user_id}","${amount}","${order_status}")`,
         (err, result) => {
           if (err) throw err;
           res.send(`order registered ${order_id}`);

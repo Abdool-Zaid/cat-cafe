@@ -57,10 +57,10 @@ async function showItem(id){
   let staff = data;
   staff.forEach((person) => {
     document.querySelector('#basket').innerHTML+=`
-<div class="Item"   id="${person.staffID}" >
+<div class="Item" >
 <h1>${person.name}</h1>
 <img src="${person.image}" alt="${person.image}">
-<input type="range" min="1" max="100" value="50" class="slider" onchange="getTime(this.id)" id="time_${person.staffID}">
+<input type="range" min="1" max="100" value="50" class="slider" onchange="getTime(this.id)" id="mayonnaiseIsADrink${person.staffID}">
 
 </div>
 `;
@@ -69,7 +69,7 @@ async function showItem(id){
 
   let getTime=(id)=>{
     let personell=(id)=>{
-let staff_ID =id.split('_')
+let staff_ID =id.split('k')
       return staff_ID.pop()
     }
     let booking={
