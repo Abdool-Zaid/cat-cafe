@@ -79,7 +79,6 @@ router.post("/login", (req, res) => {
               email: result[0].email,
               user_type: result[0].user_type,
               phone: result[0].phone,
-              country: result[0].country,
               billing_address: result[0].billing_address,
             },
           };

@@ -18,7 +18,8 @@ let registerNewUser=()=>{
         password:document.getElementById('password').value,
         full_name:document.getElementById('name').value,
         billing_adress:document.getElementById('billing_adress').value,
-        phone:document.getElementById('phone').value
+        phone:document.getElementById('phone').value,
+        user_type:"user"
         }
         localStorage.setItem('userData',JSON.stringify(userData))
 
