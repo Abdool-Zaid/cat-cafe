@@ -26,7 +26,6 @@ router.post("/register", (req, res) => {
     let user = {
       full_name,
       email,
-
       password: hash,
       user_type,
       phone,
@@ -35,7 +34,7 @@ router.post("/register", (req, res) => {
     con.query(sql, user, (err, result) => {
       if (err) throw err;
       console.log(result);
-      res.send(`User ${(user.full_name, user.email)} created successfully`);
+      res.json({msg:`User ${(user.email)} created successfully`});
     });
   } catch (error) {
     console.log(error);
