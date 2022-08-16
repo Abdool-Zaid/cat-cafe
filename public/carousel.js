@@ -80,3 +80,68 @@ async function registerNewUser() {
       console.log(data);
     });
 }
+async function sendUserData(){
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+  fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/users/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // mode: "no-cors",
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+  
+  
+}
+
+ let userLogin=()=>{
+if (!localStorage.token){
+  document.querySelector("#userLog").innerHTML=`logout`;
+  document.querySelector("#content").innerHTML = `
+<form  onsubmit="event.preventDefault()">
+<input type="text" id="email" placeholder="example@gmail.com"required>
+<input type="password" id="password" placeholder="password"required>
+<button  onclick="sendUserData()">login</button>
+</form>
+`
+let sendUserData=()=>{
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+  fetch("https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/users/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // mode: "no-cors",
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+  
+  
+}
+
+  // localStorage.setItem('token',JSON.stringify(''))
+  alert('  function')
+}else{
+  document.querySelector("#userLog").innerHTML=`login`;
+  localStorage.clear()
+  alert('logged out')
+}
+
+
+}
+
