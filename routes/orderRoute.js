@@ -28,7 +28,9 @@ router.post("/", (req, res) => {
       if (err) throw err;
       let order=JSON.stringify(result)
       let orderData=JSON.parse(order)
-      res.send(`order no: ${orderData.insertId} created successfully`);
+      res.json({msg:`order no: ${orderData.insertId} created successfully`});
+      
+
     });
   } catch (error) {
     console.log(error);
