@@ -1,4 +1,3 @@
-localStorage.setItem('user_id',('2'))
 let cart = [];
 // console.log=0
 let displayCat=()=>{
