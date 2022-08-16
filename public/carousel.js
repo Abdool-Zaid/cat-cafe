@@ -10,6 +10,28 @@ document.querySelector("#content").innerHTML = `
 </form>
 `
 }
+async function VerifyUser() {
+  const response = await fetch(
+    "https://incredible-meerkat-9ef8b4.netlify.app/.netlify/functions/api/users/users/verify",
+    {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        "x-auth-token": JSON.parse(localStorage.token),
+      },
+    }
+  );
+  let data = await response.json();
+  if (data.msg == "Unauthorized Access!") {
+    // alert("login first");
+    console.log(data.msg);
+  } else {
+    localStorage.setItem("UserName", JSON.stringify(data.user.full_name));
+    localStorage.setItem("UserID", JSON.stringify(data.user.user_id));
+    localStorage.setItem("UserType", JSON.stringify(data.user.user_type));
+  }
+}
+
 async function registerNewUser() {
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
@@ -54,14 +76,12 @@ async function sendUserData(){
   .then((res) => res.json())
   .then((data) => {
     localStorage.setItem('token',JSON.stringify(data.token))
+    VerifyUser()
   });
-  
-  
 }
 
+
  let userLogin=()=>{
-  
-  
 if (!localStorage.token){
   document.querySelector("#userLog").innerHTML=`logout`;
   document.querySelector("#content").innerHTML = `
