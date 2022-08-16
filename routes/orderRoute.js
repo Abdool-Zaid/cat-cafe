@@ -151,7 +151,8 @@ router.post("/", (req, res) => {
         `INSERT INTO orders (staff_id,user_id,amount,order_status) VALUES ("${staff_id}",${user_id}","${amount}","${order_status}")`,
         (err, result) => {
           if (err) throw err;
-          res.send(`order registered ${order_id}`);
+          res.json({msg:`order registered ${order_id}`});
+
         }
       );
     } catch (error) {
